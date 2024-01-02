@@ -1,6 +1,6 @@
+import { coms, sendKey, sendHistory, startBroadcast, disconnectSocket, connectSocket } from './coms';
 import { app, env, restoreAppState, setOrientation, updateAppState } from './env';
 import { configureViz, orientationEvent, vizUpdate } from './configureViz';
-import { coms, sendKey, sendHistory, startBroadcast } from './coms';
 import { changeDisplay, viewManager } from './viewManager';
 import { browserStorage } from './browserStorage';
 import { registerEvents } from './registerEvents';
@@ -8,6 +8,7 @@ import { newMatch } from './displayMatchArchive';
 import { touchManager } from './touchManager';
 import { defineActionEvents } from './events';
 import { generateRange } from './utilities';
+import { version } from '../config/version';
 import { modalHelp } from './modalHelp';
 import { loadMatch } from './loadMatch';
 import { closeModal } from './modals';
@@ -26,8 +27,11 @@ import iocCodes from './ioc_codes.json';
 
 export function init() {
   window['dev'] = {
+    disconnectSocket,
+    connectSocket,
     sendHistory,
     viewManager,
+    version,
     coms,
     app,
     env

@@ -5,6 +5,7 @@ import { resetMatch } from './displayMatchArchive';
 import { viewManager } from './viewManager';
 import { connect } from 'socket.io-client';
 import { pulseCircle } from './pulseCircle';
+import { version } from '../config/version';
 
 import * as d3 from 'd3';
 
@@ -50,11 +51,24 @@ export function disconnectSocket() {
 }
 
 export function sendHistory() {
-  const matchUpId = env.match.metadata.defineMatch().muid;
-  const players = env.match.metadata.players();
-  const points = env.match.history.points();
-  const payload = { matchUp: { matchUpId, points, players } };
-  if (matchUpId && points.length) coms.socket.emit('mh', { type: 'history', payload });
+  connectSocket();
+  if (coms.socket) {
+    const match = env.match.metadata.defineMatch();
+    const payload = {
+      matchUp: {
+        tournament: env.match.metadata.defineTournament(),
+        first_service: env.match.set.firstService(),
+        players: env.match.metadata.players(),
+        format: env.match.format.settings(),
+        scoreboard: env.match.scoreboard(),
+        points: env.match.history.points(),
+        matchUpId: match.muid,
+        ch_version: version,
+        match
+      }
+    };
+    if (match.muid) coms.socket.emit('mh', { type: 'history', payload });
+  }
 }
 
 function comsConnect() {
