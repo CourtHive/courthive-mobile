@@ -6,8 +6,8 @@ import inquirer from 'inquirer';
 import yargs from 'yargs';
 
 const localServerUrl = 'http://localhost:3333';
-const developmentEnvPath = './env/.env.development';
-const localEnvPath = './env/.env.local';
+const developmentEnvPath = '.env.development';
+const localEnvPath = '.env.local';
 
 const fileExists = (path) =>
   stat(path).then(
