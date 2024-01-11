@@ -10,7 +10,8 @@
   },
   "scripts": {
     "analyze": "source-map-explorer 'dist/**/*.js'",
-    "build": "tsc && vite build",
+    "build": "tsc && vite build --mode development",
+    "build:prod": "tsc && vite build --mode production",
     "check-types": "tsc --noEmit",
     "commit": "git-cz",
     "config": "node config.mjs",
