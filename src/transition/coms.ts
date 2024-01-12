@@ -63,6 +63,7 @@ export function sendHistory() {
         format: env.match.format.settings(),
         scoreboard: env.match.scoreboard(),
         points: env.match.history.points(),
+        provider: env.provider,
         matchUpId: match.muid,
         ch_version: version,
         match,

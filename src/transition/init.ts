@@ -147,13 +147,19 @@ function defineEntryEvents() {
       setTimeout(() => {
         //@ts-expect-error unknown reason
         this.setSelectionRange(0, this.value.length);
-      }, 300);
+      }, 100);
     };
   }
   const team = document.getElementById('team');
   if (team) {
     team.onblur = function () {
       changePlayerName();
+    };
+    team.onfocus = function () {
+      setTimeout(() => {
+        //@ts-expect-error unknown reason
+        this.setSelectionRange(0, this.value.length);
+      }, 100);
     };
   }
 

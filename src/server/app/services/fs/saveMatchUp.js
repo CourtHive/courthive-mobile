@@ -1,5 +1,6 @@
 import { SUCCESS, UTF8 } from '../../constants';
 
+import { getMatchStats } from '../statistics/getMatchStats';
 import { config } from '../../config/env';
 import fs from 'fs-extra';
 
@@ -9,17 +10,32 @@ const destination = '/matchups';
 export function saveMatchUp({ matchUp }) {
   fs.ensureDirSync(cache_dir + destination);
 
-  const matchUpId = matchUp.muid || matchUp.matchUpId;
-  const filename = `${matchUpId}.json`;
-  const filetype = 'json';
-  const file_to_write = `${cache_dir}${destination}/${filename}.${filetype}`;
+  const provider = matchUp.provider || '';
+  if (provider) fs.ensureDirSync(cache_dir + destination + '/' + provider);
 
-  fs.writeFile(file_to_write, JSON.stringify(matchUp), UTF8, function (err) {
+  const matchUpId = matchUp.muid || matchUp.matchUpId;
+  const providerDestination = provider ? `/${provider}` : '';
+  const fileName = `${cache_dir}${destination}${providerDestination}/${matchUpId}.json`;
+
+  fs.writeFile(fileName, JSON.stringify(matchUp, null, 2), UTF8, function (err) {
     if (!err) {
       return SUCCESS;
     } else {
       return { error: err };
     }
   });
+
+  const stats = getMatchStats({ source: matchUp });
+  if (stats && stats.length) {
+    const statsFileName = `${cache_dir}${destination}${providerDestination}/${matchUpId}.stats.json`;
+    fs.writeFile(statsFileName, JSON.stringify(stats, null, 2), UTF8, function (err) {
+      if (!err) {
+        return SUCCESS;
+      } else {
+        return { error: err };
+      }
+    });
+  }
+
   return true;
 }
