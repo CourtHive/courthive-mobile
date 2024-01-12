@@ -20,4 +20,8 @@ export function editPlayer(element: any) {
   });
   const playerRank: any = document.getElementById('player_rank');
   if (playerRank) playerRank.value = player.rank || '';
+  const playerWTN: any = document.getElementById('player_wtn');
+  if (playerWTN) playerWTN.value = player.wtn || '';
+  const playerUTR: any = document.getElementById('player_utr');
+  if (playerUTR) playerUTR.value = player.utr || '';
 }

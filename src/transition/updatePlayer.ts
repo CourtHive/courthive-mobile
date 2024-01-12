@@ -18,5 +18,10 @@ function updatePlayerDetails() {
   });
   const rankElement: any = document.getElementById('player_rank');
   if (rankElement.value) player.rank = rankElement.value;
+  const wtnElement: any = document.getElementById('player_wtn');
+  if (wtnElement.value) player.wtn = wtnElement.value;
+  const utrElement: any = document.getElementById('player_utr');
+  if (utrElement.value) player.utr = utrElement.value;
+
   return player;
 }

@@ -5,13 +5,10 @@
     "es6": true,
     "jest": true
   },
+  "ignorePatterns": ["node_modules/", "dist/", "coverage/", "scratch/", "server/", "static/"],
   "root": true,
   "parser": "@typescript-eslint/parser",
-  "extends": [
-    "plugin:@typescript-eslint/recommended",
-    "eslint:recommended",
-    "plugin:sonarjs/recommended"
-  ],
+  "extends": ["plugin:@typescript-eslint/recommended", "eslint:recommended", "plugin:sonarjs/recommended"],
   "plugins": ["sonarjs"],
   "parserOptions": {
     "ecmaVersion": "latest",

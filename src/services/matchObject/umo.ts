@@ -1346,12 +1346,12 @@ umo.common = () => {
       return { name: `Player ${['One', 'Two', 'Three', 'Four'][index]}` };
     },
     definePlayer(params?: any) {
-      const { name, birth, puid, hand, seed, rank, age, entry, ioc, draw_position, team } = params ?? {};
+      const { name, birth, puid, hand, seed, rank, age, entry, ioc, draw_position, team, wtn, utr } = params ?? {};
       let index = params?.index;
       if (index == undefined) index = metadata.players.length;
       const player = metadata.players[index] || {};
       if ((!name && !player.name) || isNaN(index) || index > 3) return false;
-      const definition = { name, birth, puid, hand, team, seed, rank, age, entry, ioc, draw_position };
+      const definition = { name, birth, puid, hand, team, seed, rank, age, entry, ioc, draw_position, wtn, utr };
       Object.keys(definition).forEach((key) => {
         if (definition[key]) player[key] = definition[key];
       });
