@@ -1,5 +1,5 @@
+import { mo } from '../services/matchObject/umo';
 import { env } from './env';
-import { mo } from './umo';
 
 export function displayFormats() {
   const format_types = env.match.format.types();

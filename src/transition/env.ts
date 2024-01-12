@@ -1,6 +1,6 @@
 import { browserStorage } from './browserStorage';
 import { firstAndLast } from './utilities';
-import { mo } from './umo';
+import { mo } from '../services/matchObject/umo';
 
 export const ch_version = '1.9';
 export const charts: any = {};
@@ -8,7 +8,7 @@ const match = mo.Match();
 
 export const app: any = {
   broadcast: undefined,
-  user_uuid: undefined
+  user_uuid: undefined,
 };
 
 export const settings: any = {
@@ -16,7 +16,7 @@ export const settings: any = {
   audible_clicks: undefined,
   display_gamefish: undefined,
   auto_swap_sides: undefined,
-  point_buttons: undefined
+  point_buttons: undefined,
 };
 
 export const env: any = {
@@ -33,7 +33,8 @@ export const env: any = {
   serving: match.nextTeamServing(),
   receiving: match.nextTeamReceiving(),
   edit_point_index: undefined,
-  match
+  provider: undefined,
+  match,
 };
 
 const c1 = 'rgb(64, 168, 75)';
@@ -51,20 +52,20 @@ export const buttons: any = {
   server_forced: { color: c2, type: 'flash' },
   receiving_winner: { color: c1, type: 'flash' },
   receiving_unforced: { color: c3, type: 'flash' },
-  receiving_forced: { color: c2, type: 'flash' }
+  receiving_forced: { color: c2, type: 'flash' },
 };
 export const options = {
   user_swap: false,
   highlight_better_stats: true,
   vertical_view: browserStorage.get('vertical_view') || 'vblack',
-  horizontal_view: browserStorage.get('horizontal_view') || 'hblack'
+  horizontal_view: browserStorage.get('horizontal_view') || 'hblack',
 };
 
 export const device: any = {
   isStandalone: 'standalone' in window.navigator && window.navigator.standalone,
   isIDevice: /iphone|ipod|ipad/i.test(window.navigator.userAgent),
   isMobile: typeof window.orientation !== 'undefined',
-  geoposition: {}
+  geoposition: {},
 };
 
 export const default_players = ['Player One', 'Player Two'];
@@ -124,7 +125,7 @@ export function updateMatchArchive(force?: boolean) {
     format: match.format.settings(),
     tournament: match.metadata.defineTournament(),
     points: points,
-    scoreboard: match.scoreboard()
+    scoreboard: match.scoreboard(),
   };
   browserStorage.set(match_id, JSON.stringify(match_object));
 }

@@ -267,7 +267,6 @@ export function changePlayerName() {
     };
     if (team) update.team = team.value;
     env.match.metadata.definePlayer(update);
-    console.log({ update });
   }
   updatePositions();
 }

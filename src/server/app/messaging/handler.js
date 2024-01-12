@@ -9,7 +9,7 @@ const messages = {
     client.emit('ack', { received: !!payload });
     saveMatchUp(payload);
     return true;
-  }
+  },
 };
 
 export function messageHandler(data, client, io) {
