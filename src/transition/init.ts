@@ -173,6 +173,26 @@ function defineEntryEvents() {
     };
   }
 
+  const playerWTN = document.getElementById('player_wtn');
+  if (playerWTN) {
+    playerWTN.onfocus = function () {
+      setTimeout(() => {
+        //@ts-expect-error unknown reason
+        this.setSelectionRange(0, this.value.length);
+      }, 300);
+    };
+  }
+
+  const playerUTR = document.getElementById('player_utr');
+  if (playerUTR) {
+    playerUTR.onfocus = function () {
+      setTimeout(() => {
+        //@ts-expect-error unknown reason
+        this.setSelectionRange(0, this.value.length);
+      }, 300);
+    };
+  }
+
   const hold_targets = Array.from(document.querySelectorAll('.pressAndHold'));
   Array.from(hold_targets).forEach((target) => touchManager.addPressAndHold(target));
 }

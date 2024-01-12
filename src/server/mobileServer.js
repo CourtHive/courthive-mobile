@@ -27,7 +27,7 @@ import coms from './app/messaging/coms';
 
 // scoped variables
 const port = config.app.port;
-const static_files = '/app/static/';
+const staticFiles = '/app/static/';
 
 // RECEIVING
 // ===========================================================================
@@ -43,7 +43,7 @@ app.use(passport.initialize());
 passport.use(jwtStrategy());
 
 // ROUTES -------------------------------
-app.use('/', express.static(__dirname + static_files));
+app.use('/', express.static(__dirname + staticFiles));
 // app.use('/auth', authRouter);
 // app.use('/test', testRouter);
 // app.use('/api', apiRouter);
@@ -60,8 +60,8 @@ app.use((req, res) => {
 const socketCors = {
   cors: {
     origins: ['*'],
-    methods: ['GET', 'POST']
-  }
+    methods: ['GET', 'POST'],
+  },
 };
 const io = new SocketServer(server, socketCors);
 
