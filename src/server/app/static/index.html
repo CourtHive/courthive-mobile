@@ -4,20 +4,20 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>CourtHive Mobile</title>
-    <link rel="shortcut icon" href="./assets/favicon-fll5iYXf.ico" />
-    <script type="module" crossorigin src="./assets/index-qfUEV-Le.js"></script>
-    <link rel="stylesheet" crossorigin href="./assets/index-bNVgzNOi.css">
+    <link rel="shortcut icon" href="/mobile2/assets/favicon-fll5iYXf.ico" />
+    <script type="module" crossorigin src="/mobile2/assets/index-WO08qqMY.js"></script>
+    <link rel="stylesheet" crossorigin href="/mobile2/assets/index-ALQZLa3Y.css">
   </head>
   <body>
     <audio id="click">
-      <source src="./assets/click-hc9Zrs0E.mp3" type="audio/mpeg" />
+      <source src="/mobile2/assets/click-hc9Zrs0E.mp3" type="audio/mpeg" />
     </audio>
 
     <div id="welcome" style="margin: 2em; display: none">
       <div class="flexcols">
         <h1><div class="flexcenter">CourtHive Mobile</div></h1>
         <div class="flexcenter">CourtHive requires a browser supporting Javascript ES6</div>
-        <div class="flexcenter"><img class="splash" src="./assets/courtHive-FS_ypinS.png" alt="CourtHive" /></div>
+        <div class="flexcenter"><img class="splash" src="/mobile2/assets/courtHive-FS_ypinS.png" alt="CourtHive" /></div>
         <div class="flexcenter">
           Chrome, Safari and Firefox browsers on mobile devices with iOS &gt; 9 of Android &gt; 5
         </div>
@@ -54,12 +54,7 @@
           <div class="ep_row">
             <div class="ep_item">Player:</div>
             <div class="ep_item">
-              <select
-                class="changePointPlayer ep_select select_player"
-                id="point_player"
-                tabindex="2"
-                onchange="changePointPlayer()"
-              >
+              <select class="ep_select select_player" id="point_player" tabindex="2">
                 <option value="0">Player One</option>
                 <option value="1">Player Two</option>
               </select>
@@ -68,7 +63,7 @@
           <div class="ep_row">
             <div class="ep_item">Result:</div>
             <div class="ep_item">
-              <select class="changePointPlayer ep_select" id="point_result" tabindex="3" onchange="changePointPlayer()">
+              <select class="ep_select" id="point_result" tabindex="3">
                 <option value="">- select -</option>
                 <option value="Ace">Ace</option>
                 <option value="Double Fault">Double Fault</option>
@@ -81,7 +76,7 @@
           <div class="ep_row">
             <div class="ep_item">Winner:</div>
             <div class="ep_item">
-              <select class="ep_select select_player" id="point_winner" tabindex="4" onchange="changePointWinner()">
+              <select class="ep_select select_player" id="point_winner" tabindex="4">
                 <option value="0">Player One</option>
                 <option value="1">Player Two</option>
               </select>
@@ -104,6 +99,12 @@
           </div>
           <div class="ep_row">
             <input id="team" class="ep_playerteam input is-secondary" placeholder="Team" />
+          </div>
+          <div class="ep_row">
+            <div class="ep_item">Player Identification #:</div>
+            <div class="ep_item">
+              <input id="playerid" class="ep_playerteam input is-secondary" placeholder="Player Id" />
+            </div>
           </div>
           <div class="ep_row">
             <div class="ep_item">Hand:</div>
