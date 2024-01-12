@@ -23,5 +23,10 @@ function updatePlayerDetails() {
   const utrElement: any = document.getElementById('player_utr');
   if (utrElement.value) player.utr = utrElement.value;
 
+  const teamElement: any = document.getElementById('team');
+  if (teamElement.value) player.team = teamElement.value;
+  const idElement: any = document.getElementById('playerid');
+  if (idElement.value) player.id = idElement.value;
+
   return player;
 }
