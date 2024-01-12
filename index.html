@@ -5,9 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>CourtHive Mobile</title>
     <link rel="shortcut icon" href="./favicon.ico" />
-    <link rel="stylesheet" type="text/css" href="/src/transition/css/courtHive.css" />
-    <link rel="stylesheet" type="text/css" href="/src/transition/css/swipeList.css" />
-    <link rel="stylesheet" type="text/css" href="/src/transition/css/icons.css" />
   </head>
   <body>
     <script type="module" src="/src/main.ts"></script>
@@ -40,7 +37,7 @@
       </div>
     </div>
 
-    <div id="modal" class="modal" style="display: none">
+    <div id="modal" class="ch_modal" style="display: none">
       <div class="modal-content">
         <div class="modal-menu">
           <div id="close-modal" class="closeModal icon closeicon"></div>
@@ -49,7 +46,7 @@
       </div>
     </div>
 
-    <div id="editpoint" class="modal" style="display: none">
+    <div id="editpoint" class="ch_modal" style="display: none">
       <div class="modal-content">
         <div class="ep_player">
           <div id="ep_sgp" class="ep_row">Set, Game, Point</div>
@@ -97,12 +94,15 @@
       </div>
     </div>
 
-    <div id="editplayer" class="modal" style="display: none">
+    <div id="editplayer" class="ch_modal" style="display: none">
       <div class="modal-content">
         <div class="ep_player">
           <div class="ep_header"><b>Player Details</b></div>
           <div class="ep_row">
-            <input id="playername" class="ep_playername" value="Player Name" onBlur="updatePositions()" />
+            <input id="playername" class="ep_playername input is-primary" placeholder="Player Name" />
+          </div>
+          <div class="ep_row">
+            <input id="team" class="ep_playername input is-secondary" placeholder="Team" />
           </div>
           <div class="ep_row">
             <div class="ep_item">Hand:</div>
@@ -482,7 +482,7 @@
       </div>
     </div>
 
-    <div id="matchdeets" class="modal" style="display: none">
+    <div id="matchdeets" class="ch_modal" style="display: none">
       <div id="matchdetail_content" class="modal-content">
         <input id="blur" class="blur" readonly />
         <div class="md_detail">
@@ -724,7 +724,7 @@
           <div class="status_message"></div>
         </div>
       </div>
-      <div class="footer vs_rally">
+      <div class="ch_footer vs_rally">
         <div class="classAction vs_rallybar rally flexcenter pressAndHold" action="rally">Rally</div>
       </div>
     </div>

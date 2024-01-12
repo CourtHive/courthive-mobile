@@ -12,7 +12,7 @@ import { updateStats } from './updateStats';
 import { modalShare } from './modalShare';
 import { updatePoint } from './editPoint';
 import { editPlayer } from './editPlayer';
-import { broadcastToggle } from './coms';
+import { broadcastToggle, sendHistory } from './coms';
 import { modalHelp } from './modalHelp';
 import { modalInfo } from './modalInfo';
 import { updateAppState } from './env';
@@ -33,7 +33,7 @@ import {
   viewGameTree,
   viewMatchFormat,
   viewGameFish,
-  viewEditPoint
+  viewEditPoint,
 } from './clickActions';
 
 export function registerEvents() {
@@ -47,6 +47,7 @@ export function registerEvents() {
     .register('closeModal', 'tap', closeModal)
     .register('newMatch', 'tap', newMatch)
     .register('exportMatch', 'tap', exportMatch)
+    .register('sendHistory', 'tap', sendHistory)
     .register('settings', 'tap', settings)
     .register('outcomeEntry', 'tap', outcomeEntry)
     .register('matchArchive', 'tap', matchArchive)

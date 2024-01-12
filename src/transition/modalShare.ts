@@ -52,11 +52,22 @@ function shareResult(json_data: any) {
     </div>
   `
     : '';
+
+  const match_id = json_data?.match?.muid;
+  const sendHistoryOption = match_id
+    ? `
+   <div matchId="${match_id}" class="sendHistory flexcenter">
+      <div matchId="${match_id}" class='sendHistory export_action action_icon iconsave'></div>
+   </div>
+`
+    : '';
+
   const modaltext = `
       <p>&nbsp;</p>
       <h1>Options for Sharing</h1>
       <div class='flexrows'> 
         ${emailOption}
+        ${sendHistoryOption}
         ${clipboardOption}
       </div>`;
   showModal(modaltext, JSON.stringify(json_data));

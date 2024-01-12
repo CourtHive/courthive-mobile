@@ -19,8 +19,8 @@ const formats = {
       tiebreak: true,
       hasDecider: true,
       threshold: 9,
-      minDiff: 1
-    }
+      minDiff: 1,
+    },
   },
   sets: {
     AdSetsTo6tb7: {
@@ -29,7 +29,7 @@ const formats = {
       threshold: 6,
       minDiff: 2,
       children: 'advantage',
-      decidingChild: 'tiebreak7a'
+      decidingChild: 'tiebreak7a',
     },
     NoAdSetsTo6tb7: {
       description: 'No-Ad, 6 games for set, Tiebreak to 7',
@@ -37,7 +37,7 @@ const formats = {
       threshold: 6,
       minDiff: 2,
       children: 'noAdvantage',
-      decidingChild: 'tiebreak7a'
+      decidingChild: 'tiebreak7a',
     },
     NoAdSetsTo4tb7: {
       description: 'No-Ad, 4 games for set, Tiebreak to 7',
@@ -45,7 +45,7 @@ const formats = {
       threshold: 4,
       minDiff: 0,
       children: 'noAdvantage',
-      decidingChild: 'tiebreak7a'
+      decidingChild: 'tiebreak7a',
     },
     longSetTo6by2: {
       description: 'Advantage, 6 games for set, win by 2 games',
@@ -53,7 +53,7 @@ const formats = {
       threshold: 6,
       minDiff: 2,
       children: 'advantage',
-      decidingChild: 'advantage'
+      decidingChild: 'advantage',
     },
     supertiebreak: {
       description: 'Supertiebreak',
@@ -61,7 +61,7 @@ const formats = {
       threshold: 1,
       minDiff: 1,
       children: 'tiebreak10a',
-      decidingChild: 'tiebreak10a'
+      decidingChild: 'tiebreak10a',
     },
     pro10a12: {
       description: '10 Game No Ad Pro Set; tiebreak to 12',
@@ -69,7 +69,7 @@ const formats = {
       threshold: 10,
       minDiff: 2,
       children: 'noAdvantage',
-      decidingChild: 'tiebreak12a'
+      decidingChild: 'tiebreak12a',
     },
     pro8a7: {
       description: '8 Game Pro Set; tiebreak to 7',
@@ -77,8 +77,8 @@ const formats = {
       threshold: 8,
       minDiff: 2,
       children: 'advantage',
-      decidingChild: 'tiebreak7a'
-    }
+      decidingChild: 'tiebreak7a',
+    },
   },
   matches: {
     '3_6a_7': {
@@ -88,7 +88,7 @@ const formats = {
       threshold: 2,
       minDiff: 0,
       children: 'AdSetsTo6tb7',
-      decidingChild: 'AdSetsTo6tb7'
+      decidingChild: 'AdSetsTo6tb7',
     },
     '3_6n_7': {
       name: 'Standard No-Advantage',
@@ -97,7 +97,7 @@ const formats = {
       threshold: 2,
       minDiff: 0,
       children: 'NoAdSetsTo6tb7',
-      decidingChild: 'NoAdSetsTo6tb7'
+      decidingChild: 'NoAdSetsTo6tb7',
     },
     '3_4n_10': {
       name: 'Standard Under 10',
@@ -106,7 +106,7 @@ const formats = {
       threshold: 2,
       minDiff: 0,
       children: 'NoAdSetsTo4tb7',
-      decidingChild: 'supertiebreak'
+      decidingChild: 'supertiebreak',
     },
     '1_4n_7': {
       name: 'Under 10 Qualifying',
@@ -115,7 +115,7 @@ const formats = {
       threshold: 1,
       minDiff: 0,
       children: 'NoAdSetsTo4tb7',
-      decidingChild: 'NoAdSetsTo4tb7'
+      decidingChild: 'NoAdSetsTo4tb7',
     },
     '3_6n_10': {
       name: 'No-Ad, 3rd Set Supertiebreak',
@@ -124,7 +124,7 @@ const formats = {
       threshold: 2,
       minDiff: 0,
       children: 'NoAdSetsTo6tb7',
-      decidingChild: 'supertiebreak'
+      decidingChild: 'supertiebreak',
     },
     '5_6a_7': {
       name: 'US Open Men',
@@ -133,7 +133,7 @@ const formats = {
       threshold: 3,
       minDiff: 0,
       children: 'AdSetsTo6tb7',
-      decidingChild: 'AdSetsTo6tb7'
+      decidingChild: 'AdSetsTo6tb7',
     },
     '5_6a_7_long': {
       name: 'Grand Slam Men - Final Advantage Set',
@@ -142,7 +142,7 @@ const formats = {
       threshold: 3,
       minDiff: 0,
       children: 'AdSetsTo6tb7',
-      decidingChild: 'longSetTo6by2'
+      decidingChild: 'longSetTo6by2',
     },
     '3_6a_7_long': {
       name: 'Grand Slam Women - Final Advantage Set',
@@ -151,7 +151,7 @@ const formats = {
       threshold: 2,
       minDiff: 0,
       children: 'AdSetsTo6tb7',
-      decidingChild: 'longSetTo6by2'
+      decidingChild: 'longSetTo6by2',
     },
     '1_8a_7': {
       name: '8 Game Pro Set',
@@ -160,9 +160,9 @@ const formats = {
       threshold: 1,
       minDiff: 0,
       children: 'pro8a7',
-      decidingChild: 'pro8a7'
-    }
-  }
+      decidingChild: 'pro8a7',
+    },
+  },
 };
 
 umo.formats = () => formats;
@@ -226,7 +226,7 @@ umo.stateObject = ({ index, object, parent_object, child, format, common = umo.c
       if (common.metadata.serviceOrder().indexOf(value) < 0) return false;
       so.first_service = value;
       return so.set;
-    }
+    },
   };
 
   so.history = {};
@@ -251,7 +251,7 @@ umo.stateObject = ({ index, object, parent_object, child, format, common = umo.c
 
   so.score = () => {
     const counters: any = {
-      local: so.counter
+      local: so.counter,
     };
     counters.points =
       object == 'Game'
@@ -438,7 +438,7 @@ umo.stateObject = ({ index, object, parent_object, child, format, common = umo.c
       so.format,
       common.metadata.teams(),
       so.set.perspectiveScore(),
-      so.score()
+      so.score(),
     );
     if (!point) return { result: false };
     so.counter[point.winner] += 1;
@@ -448,7 +448,7 @@ umo.stateObject = ({ index, object, parent_object, child, format, common = umo.c
       score: so.scoreboard(),
       number: so.local_history.filter((episode: any) => episode.winner != undefined).length,
       index: so.history.points().length,
-      [object.toLowerCase()]: index
+      [object.toLowerCase()]: index,
     };
 
     const points_to_game = so.pointsToGame();
@@ -466,7 +466,7 @@ umo.stateObject = ({ index, object, parent_object, child, format, common = umo.c
       result: true,
       complete: so.complete(),
       point: point,
-      needed: { points_to_game }
+      needed: { points_to_game },
     };
 
     common.history.push(episode);
@@ -487,7 +487,7 @@ umo.stateObject = ({ index, object, parent_object, child, format, common = umo.c
       so.local_history.push({
         winner: episode.point.winner,
         [so.child.plural]: so.counter.slice(),
-        index: child.set.index()
+        index: child.set.index(),
       });
     }
     episode.complete = so.complete();
@@ -499,7 +499,7 @@ umo.stateObject = ({ index, object, parent_object, child, format, common = umo.c
       complete: child.complete(),
       winner: child.winner(),
       [so.child.plural]: so.counter.slice(),
-      index: child.set.index()
+      index: child.set.index(),
     };
     if (!parent_object) common.addStatPoint(episode);
     if (!parent_object) common.events.addPoint().forEach((fx) => fx(episode));
@@ -755,7 +755,7 @@ umo.Match = (params: any) => {
     scoreboard: match.scoreboard,
     [match.child.plural]: match.accessChildren,
     history: match.history,
-    stats: common.stats
+    stats: common.stats,
   };
 };
 
@@ -880,7 +880,7 @@ umo.Set = ({ index, parent_object, type, common = umo.common() }) => {
     lastChild: set.lastChild,
     newChild: set.newChild,
     history: set.history,
-    pointsNeeded: set.pointsNeeded
+    pointsNeeded: set.pointsNeeded,
   };
 };
 
@@ -967,7 +967,7 @@ umo.Game = ({ index, parent_object, type, common = umo.common() }) => {
     scoreboard: game.scoreboard,
     history: game.history,
     lastChild: game.lastChild,
-    pointsToGame: game.pointsToGame
+    pointsToGame: game.pointsToGame,
   };
 };
 
@@ -1090,7 +1090,7 @@ const adProgression = {
   '40-30': ['G-30', '40-40'],
   '40-40': ['A-40', '40-A'],
   'A-40': ['G-40', '40-40'],
-  '40-A': ['40-40', '40-G']
+  '40-A': ['40-40', '40-G'],
 };
 
 umo.matchFormat = ({ type = '3_6a_7', common }) => {
@@ -1110,7 +1110,7 @@ umo.matchFormat = ({ type = '3_6a_7', common }) => {
     hasDecider: mf.hasDecider,
     minDiff: mf.minDiff,
     children: mf.children,
-    decidingChild: mf.decidingChild
+    decidingChild: mf.decidingChild,
   };
 };
 
@@ -1131,7 +1131,7 @@ umo.setFormat = ({ type = 'AdSetsTo6tb7', common }) => {
     hasDecider: sf.hasDecider,
     minDiff: sf.minDiff,
     children: sf.children,
-    decidingChild: sf.decidingChild
+    decidingChild: sf.decidingChild,
   };
 };
 
@@ -1149,7 +1149,7 @@ umo.gameFormat = ({ type = 'advantage', common }) => {
     threshold: gf.threshold,
     hasDecider: gf.hasDecider,
     minDiff: gf.minDiff,
-    tiebreak: gf.tiebreak
+    tiebreak: gf.tiebreak,
   };
 };
 
@@ -1200,7 +1200,7 @@ umo.formatObject = ({ plural, common = umo.common() }) => {
           threshold: fo.values.threshold,
           has_decider: fo.values.has_decider,
           min_diff: fo.values.min_diff,
-          tiebreak: fo.values.tiebreak
+          tiebreak: fo.values.tiebreak,
         };
       } else {
         // TODO: propagate these settings down to unfinished sets/games
@@ -1252,7 +1252,7 @@ umo.formatObject = ({ plural, common = umo.common() }) => {
       fo.values.description = fo.values.code = undefined;
       if ([true, false].indexOf(value) >= 0) fo.values.has_decider = value;
       return fo;
-    }
+    },
   };
   return fo;
 };
@@ -1283,7 +1283,7 @@ umo.common = () => {
         tournament: {},
         match: {},
         timestamps: false,
-        charter: undefined
+        charter: undefined,
       };
     },
     timestamps(value) {
@@ -1329,16 +1329,17 @@ umo.common = () => {
       return { name: `Player ${['One', 'Two', 'Three', 'Four'][index]}` };
     },
     definePlayer(params?: any) {
-      const { name, birth, puid, hand, seed, rank, age, entry, ioc, draw_position } = params ?? {};
+      const { name, birth, puid, hand, seed, rank, age, entry, ioc, draw_position, team } = params ?? {};
       let index = params?.index;
       if (index == undefined) index = metadata.players.length;
       const player = metadata.players[index] || {};
       if ((!name && !player.name) || isNaN(index) || index > 3) return false;
-      const definition = { name, birth, puid, hand, seed, rank, age, entry, ioc, draw_position };
+      const definition = { name, birth, puid, hand, team, seed, rank, age, entry, ioc, draw_position };
       Object.keys(definition).forEach((key) => {
         if (definition[key]) player[key] = definition[key];
       });
       metadata.players[index] = player;
+      console.log(metadata.players);
       return { index, player };
     },
     defineTournament(params?: any) {
@@ -1363,7 +1364,7 @@ umo.common = () => {
         duration,
         status,
         umpire,
-        official_score
+        official_score,
       };
       Object.keys(definition).forEach((key) => {
         if (definition[key]) metadata.match[key] = definition[key];
@@ -1372,7 +1373,7 @@ umo.common = () => {
     },
     showTiebreakOrder(first_service) {
       return calcTiebreakService(12, first_service);
-    }
+    },
   };
 
   function changeOrder(order, submitted, counterpart) {
@@ -1547,7 +1548,7 @@ umo.common = () => {
           episodes.forEach((episode) => pub.addStatPoint(episode));
         }
         return stat_points;
-      }
+      },
     },
     addStatPoint(episode) {
       if (!pub.live_stats) return;
@@ -1608,7 +1609,7 @@ umo.common = () => {
           Object.keys(stat_points[grouping][group]).forEach((stat) => {
             if (stat_points[grouping][group][stat].length) {
               stat_points[grouping][group][stat] = stat_points[grouping][group][stat].filter(
-                (f) => f.point.index != episode.point.index
+                (f) => f.point.index != episode.point.index,
               );
             }
           });
@@ -1616,7 +1617,7 @@ umo.common = () => {
       });
       const points = pub.history.filter((episode) => episode.action == 'addPoint');
       last_episode = points.length ? points[points.length - 1] : undefined;
-    }
+    },
   };
   accessors.reset();
   return pub;
@@ -1641,23 +1642,23 @@ umo.common = () => {
       'Points Won Receiving': {
         numerators: ['received1stWon', 'received2ndWon'],
         denominators: ['-pointsServed'],
-        calc: 'percentage'
+        calc: 'percentage',
       },
       'Breakpoints Saved': {
         numerators: ['breakpointsSaved'],
         denominators: ['breakpointsFaced'],
-        calc: 'percentage'
+        calc: 'percentage',
       },
       'Breakpoints Converted': {
         numerators: ['-breakpointsSaved'],
         denominators: ['-breakpointsFaced'],
-        calc: 'difference'
+        calc: 'difference',
       },
       'Aggressive Margin': {
         calc: 'aggressiveMargin',
         numerators: ['*doubleFaults', '*unforcedErrors'],
-        denominators: ['*aces', '*winners', '-*forcedErrors']
-      }
+        denominators: ['*aces', '*winners', '-*forcedErrors'],
+      },
     };
 
     const reduceComponents = (components, teams, team) => {
@@ -1722,11 +1723,11 @@ umo.common = () => {
         const { numerator, denominator } = numeratorDenominator(stat_obj, teams, team);
         const diff = denominator - numerator;
         const point_counts = Object.keys(teams).map((team) =>
-          teams[team].pointsWon ? teams[team].pointsWon.length : 0
+          teams[team].pointsWon ? teams[team].pointsWon.length : 0,
         );
         const total_points = [].concat(0, 0, ...point_counts).reduce((a, b) => a + b);
         return Object.assign(displayPct(diff, total_points), { numerators: stat_obj.numerators });
-      }
+      },
     };
 
     const teams_counters = [].concat(...Object.keys(stats.teams).map((team) => Object.keys(stats.teams[team])));
