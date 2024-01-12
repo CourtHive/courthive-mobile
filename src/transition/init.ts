@@ -20,10 +20,11 @@ import {
   loadDetails,
   resetButtons,
   swapServer,
-  visibleButtons
+  visibleButtons,
 } from './displayUpdate';
 
 import iocCodes from './ioc_codes.json';
+import { setInitialState } from '../config/initialState';
 
 export function init() {
   window['dev'] = {
@@ -34,7 +35,7 @@ export function init() {
     version,
     coms,
     app,
-    env
+    env,
   };
 
   window.addEventListener(
@@ -42,14 +43,14 @@ export function init() {
     function () {
       orientationEvent();
     },
-    false
+    false,
   );
   window.addEventListener(
     'resize',
     function () {
       orientationEvent();
     },
-    false
+    false,
   );
 
   const queryString: any = {};
@@ -118,6 +119,8 @@ export function init() {
   if (queryString.key) {
     setTimeout(() => sendKey({ key: queryString.key }), 1000);
   }
+
+  setInitialState();
 }
 
 function checkUserUUID() {
@@ -145,6 +148,12 @@ function defineEntryEvents() {
         //@ts-expect-error unknown reason
         this.setSelectionRange(0, this.value.length);
       }, 300);
+    };
+  }
+  const team = document.getElementById('team');
+  if (team) {
+    team.onblur = function () {
+      changePlayerName();
     };
   }
 

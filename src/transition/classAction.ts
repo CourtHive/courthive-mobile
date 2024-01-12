@@ -79,7 +79,7 @@ export function classAction(element: any) {
       return {
         winner: 1 - side,
         result: 'Penalty',
-        code: side == env.serving ? 'P' : 'Q'
+        code: side == env.serving ? 'P' : 'Q',
       };
     },
 
@@ -119,12 +119,9 @@ export function classAction(element: any) {
     },
     let() {
       broadcastStatus('Service: Let');
-      // const server_side = env.swap_sides ? 1 - env.serving : env.serving;
-      // const server_let = `.modeforce_player${server_side}`;
-      // const action = element.innerHTML;
       env.lets += 1;
       // reset serve clock
-    }
+    },
   };
 
   const sound: any = document.getElementById('click');

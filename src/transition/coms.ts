@@ -8,10 +8,11 @@ import { pulseCircle } from './pulseCircle';
 import { version } from '../config/version';
 
 import * as d3 from 'd3';
+import { closeModal } from './modals';
 
 type ComsObject = {
-  socket: any;
   connectionOptions: any;
+  socket: any;
 };
 
 export const coms: ComsObject = {
@@ -20,8 +21,8 @@ export const coms: ComsObject = {
     'force new connection': true,
     reconnectionDelay: 1000,
     reconnectionAttempts: 'Infinity',
-    timeout: 20000
-  }
+    timeout: 20000,
+  },
 };
 
 export function connectSocket() {
@@ -64,11 +65,12 @@ export function sendHistory() {
         points: env.match.history.points(),
         matchUpId: match.muid,
         ch_version: version,
-        match
-      }
+        match,
+      },
     };
     if (match.muid) coms.socket.emit('mh', { type: 'history', payload });
   }
+  closeModal();
 }
 
 function comsConnect() {
@@ -77,12 +79,13 @@ function comsConnect() {
 function comsDisconnect() {
   console.log('socket closed');
 }
-function comsError(err) {
-  console.log('coms error', err);
+function comsError() {
+  showModal(` <p> <h1>No Internet Connection!</h1>`);
+  endBroadcast();
 }
 
 function receiveMatchUp(data: any) {
-  if (!data || !data.matchUpId) {
+  if (!data?.matchUpId) {
     const message = `<h2>Invalid Data</h2>`;
     return showModal(message);
   }
@@ -95,17 +98,17 @@ function receiveMatchUp(data: any) {
   env.match.metadata.defineTournament({
     name: auth_match.tournament.name,
     tuid: auth_match.tournament.tuid,
-    start_date: formatDate(auth_match.tournament.start)
+    start_date: formatDate(auth_match.tournament.start),
   });
 
   env.match.metadata.defineMatch({
-    euid: auth_match.event.euid
+    euid: auth_match.event.euid,
   });
 
   const format = auth_match.teams && 2 === auth_match.teams[0].length ? 'doubles' : 'singles';
   const teams = getOpponents({
     sides: auth_match.teams,
-    format
+    format,
   });
   env.match.metadata.definePlayer({ index: 0, name: teams[0] });
   env.match.metadata.definePlayer({ index: 1, name: teams[1] });
@@ -115,7 +118,7 @@ function receiveMatchUp(data: any) {
     const surfaces: any = {
       C: 'clay',
       H: 'hard',
-      G: 'grass'
+      G: 'grass',
     };
     if (surfaces[surface]) {
       env.match.metadata.defineTournament({ surface: surfaces[surface] });
@@ -126,7 +129,7 @@ function receiveMatchUp(data: any) {
   if (in_out) {
     const inout: any = {
       o: 'out',
-      i: 'in'
+      i: 'in',
     };
     if (inout[in_out]) {
       env.match.metadata.defineTournament({ in_out: inout[in_out] });
@@ -164,9 +167,15 @@ function endBroadcast() {
 export function sendKey(payload: any) {
   Object.assign(payload, {
     timestamp: new Date().getTime(),
-    uuuid: app.user_uuid
+    uuuid: app.user_uuid,
   });
-  coms.socket.emit('mh', { type: 'key', payload });
+  if (coms.socket) {
+    coms.socket.emit('mh', { type: 'key', payload });
+    closeModal();
+  } else {
+    const modaltext = ` <p> <h1>Not connected</h1> <p><i>Connection Error</i></p> </p> `;
+    showModal(modaltext);
+  }
 }
 
 export function broadcastToggle() {
@@ -176,7 +185,6 @@ export function broadcastToggle() {
   } else {
     endBroadcast();
   }
-  if (!navigator.onLine) showModal(` <p> <h1>No Internet Connection!</h1>`);
   updateAppState();
 }
 

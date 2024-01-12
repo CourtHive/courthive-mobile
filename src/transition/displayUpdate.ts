@@ -104,19 +104,19 @@ export function visibleButtons() {
   const points = env.match.history.action('addPoint');
   const match_archive = JSON.parse(browserStorage.get('match_archive') || '[]');
   Array.from(document.querySelectorAll('.view_stats')).forEach(
-    (div: any) => (div.style.display = points.length > 0 ? 'inline' : 'none')
+    (div: any) => (div.style.display = points.length > 0 ? 'inline' : 'none'),
   );
   Array.from(document.querySelectorAll('.change_server')).forEach(
-    (div: any) => (div.style.display = points.length == 0 ? 'inline' : 'none')
+    (div: any) => (div.style.display = points.length == 0 ? 'inline' : 'none'),
   );
   Array.from(document.querySelectorAll('.view_archive')).forEach(
-    (div: any) => (div.style.display = points.length == 0 && match_archive.length ? 'inline' : 'none')
+    (div: any) => (div.style.display = points.length == 0 && match_archive.length ? 'inline' : 'none'),
   );
   Array.from(document.querySelectorAll('.view_settings')).forEach(
-    (div: any) => (div.style.display = points.length == 0 && !match_archive.length ? 'inline' : 'none')
+    (div: any) => (div.style.display = points.length == 0 && !match_archive.length ? 'inline' : 'none'),
   );
   Array.from(document.querySelectorAll('.view_history')).forEach(
-    (div: any) => (div.style.display = points.length > 0 ? 'inline' : 'none')
+    (div: any) => (div.style.display = points.length > 0 ? 'inline' : 'none'),
   );
   Array.from(document.querySelectorAll('.undo')).forEach((div: any) => {
     div.style.display = points.length > 0 || env.serve2nd || env.rally_mode ? 'flex' : 'none';
@@ -174,7 +174,7 @@ export function resetButtons() {
   Array.from(document.querySelectorAll(receiver_forced)).forEach((div) => (div.innerHTML = 'Forced'));
 
   Array.from(document.querySelectorAll('.vs_point_button')).forEach(
-    (div: any) => (div.style.display = settings.point_buttons ? 'flex' : 'none')
+    (div: any) => (div.style.display = settings.point_buttons ? 'flex' : 'none'),
   );
 
   Array.from(document.querySelectorAll('.rally')).forEach((div) => (div.innerHTML = 'Rally'));
@@ -259,7 +259,16 @@ export function checkPlayerName(keypress: any) {
 
 export function changePlayerName() {
   const player_name: any = document.getElementById('playername');
-  if (player_name) env.match.metadata.definePlayer({ index: env.edit_player, name: player_name.value });
+  const team: any = document.getElementById('team');
+  if (player_name) {
+    const update: any = {
+      index: env.edit_player,
+      name: player_name.value,
+    };
+    if (team) update.team = team.value;
+    env.match.metadata.definePlayer(update);
+    console.log({ update });
+  }
   updatePositions();
 }
 

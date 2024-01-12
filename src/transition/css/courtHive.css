@@ -1,5 +1,5 @@
 @media (min-height: 500px) {
-  .footer {
+  .ch_footer {
     position: absolute;
     right: 0;
     bottom: 0;
@@ -286,7 +286,7 @@ body {
   background: white;
 }
 
-.footer {
+.ch_footer {
   width: 100%;
   display: -webkit-flex;
   display: flex;
@@ -603,6 +603,7 @@ body {
   background-color: white;
 }
 
+/*
 .ep_playername {
   border: none;
   width: 100%;
@@ -611,6 +612,7 @@ body {
   color: black;
   background-color: white;
 }
+*/
 
 .ep_row {
   width: 100%;
@@ -1601,7 +1603,7 @@ body {
   }
 }
 
-.modal {
+.ch_modal {
   display: none;
   flex-direction: column;
   -webkit-flex-direction: column;

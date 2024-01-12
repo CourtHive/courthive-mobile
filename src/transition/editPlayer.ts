@@ -10,6 +10,8 @@ export function editPlayer(element: any) {
   const player = env.match.metadata.players(env.edit_player);
   const playerName: any = document.getElementById('playername');
   if (playerName) playerName.value = player.name;
+  const team: any = document.getElementById('team');
+  if (team) team.value = player.team ?? '';
   const attributes = ['hand', 'entry', 'seed', 'draw_position', 'ioc'];
   attributes.forEach((attribute) => {
     const target_id = `player_${attribute}`;

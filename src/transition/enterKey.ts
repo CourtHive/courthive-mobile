@@ -1,17 +1,15 @@
 import { showModal } from './utilities';
-import { closeModal } from './modals';
 import { sendKey } from './coms';
 
-export function enterKey(value: string) {
+export function enterKey() {
   const html = `
     <h2>Enter key:</h2>
-    <input id='key' class='key_input'>
+    <input id='key' class='key_input input is-primary'>
     <button id='submit_key' class='btn btn-small submit-btn'>Submit</button>
   `;
   showModal(html);
 
   const key: any = document.getElementById('key');
-  if (key && value) key.value = value;
 
   const key_entry = document.getElementById('key');
   if (key_entry) key_entry.addEventListener('keyup', keyAction);
@@ -21,7 +19,6 @@ export function enterKey(value: string) {
 
   function submitKey() {
     if (key.value) sendKey({ key: key.value });
-    closeModal();
   }
 
   function keyAction(evt: any) {
