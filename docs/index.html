@@ -5,8 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>CourtHive Mobile</title>
     <link rel="shortcut icon" href="./assets/favicon-fll5iYXf.ico" />
-    <script type="module" crossorigin src="./assets/index-DwlEBYqp.js"></script>
-    <link rel="stylesheet" crossorigin href="./assets/index-3-FsQM5w.css">
+    <script type="module" crossorigin src="./assets/index-UZsKwe1z.js"></script>
+    <link rel="stylesheet" crossorigin href="./assets/index-bNVgzNOi.css">
   </head>
   <body>
     <audio id="click">
@@ -38,7 +38,7 @@
       </div>
     </div>
 
-    <div id="modal" class="modal" style="display: none">
+    <div id="modal" class="ch_modal" style="display: none">
       <div class="modal-content">
         <div class="modal-menu">
           <div id="close-modal" class="closeModal icon closeicon"></div>
@@ -47,19 +47,14 @@
       </div>
     </div>
 
-    <div id="editpoint" class="modal" style="display: none">
+    <div id="editpoint" class="ch_modal" style="display: none">
       <div class="modal-content">
         <div class="ep_player">
           <div id="ep_sgp" class="ep_row">Set, Game, Point</div>
           <div class="ep_row">
             <div class="ep_item">Player:</div>
             <div class="ep_item">
-              <select
-                class="changePointPlayer ep_select select_player"
-                id="point_player"
-                tabindex="2"
-                onchange="changePointPlayer()"
-              >
+              <select class="ep_select select_player" id="point_player" tabindex="2">
                 <option value="0">Player One</option>
                 <option value="1">Player Two</option>
               </select>
@@ -68,7 +63,7 @@
           <div class="ep_row">
             <div class="ep_item">Result:</div>
             <div class="ep_item">
-              <select class="changePointPlayer ep_select" id="point_result" tabindex="3" onchange="changePointPlayer()">
+              <select class="ep_select" id="point_result" tabindex="3">
                 <option value="">- select -</option>
                 <option value="Ace">Ace</option>
                 <option value="Double Fault">Double Fault</option>
@@ -81,7 +76,7 @@
           <div class="ep_row">
             <div class="ep_item">Winner:</div>
             <div class="ep_item">
-              <select class="ep_select select_player" id="point_winner" tabindex="4" onchange="changePointWinner()">
+              <select class="ep_select select_player" id="point_winner" tabindex="4">
                 <option value="0">Player One</option>
                 <option value="1">Player Two</option>
               </select>
@@ -95,12 +90,21 @@
       </div>
     </div>
 
-    <div id="editplayer" class="modal" style="display: none">
+    <div id="editplayer" class="ch_modal" style="display: none">
       <div class="modal-content">
         <div class="ep_player">
           <div class="ep_header"><b>Player Details</b></div>
           <div class="ep_row">
-            <input id="playername" class="ep_playername" value="Player Name" onBlur="updatePositions()" />
+            <input id="playername" class="ep_playername input is-primary" placeholder="Player Name" />
+          </div>
+          <div class="ep_row">
+            <input id="team" class="ep_playerteam input is-secondary" placeholder="Team" />
+          </div>
+          <div class="ep_row">
+            <div class="ep_item">Player Identification #:</div>
+            <div class="ep_item">
+              <input id="playerid" class="ep_playerteam input is-secondary" placeholder="Player Id" />
+            </div>
           </div>
           <div class="ep_row">
             <div class="ep_item">Hand:</div>
@@ -143,7 +147,19 @@
           <div class="ep_row">
             <div class="ep_item">Rank:</div>
             <div class="ep_item">
-              <input class="updatePlayer ep_select" id="player_rank" placeholder="Player Rank" />
+              <input class="updatePlayer ep_select" id="player_rank" placeholder="Ranking" />
+            </div>
+          </div>
+          <div class="ep_row">
+            <div class="ep_item">WTN:</div>
+            <div class="ep_item">
+              <input class="updatePlayer ep_select" id="player_wtn" placeholder="WTN Rating" />
+            </div>
+          </div>
+          <div class="ep_row">
+            <div class="ep_item">UTR:</div>
+            <div class="ep_item">
+              <input class="updatePlayer ep_select" id="player_utr" placeholder="UTR Rating" />
             </div>
           </div>
           <div class="ep_row">
@@ -155,7 +171,7 @@
             </div>
           </div>
           <div class="ep_actions">
-            <div class="closeModal ep_action">Done</div>
+            <div class="updatePlayer closeModal ep_action">Done</div>
           </div>
         </div>
       </div>
@@ -480,7 +496,7 @@
       </div>
     </div>
 
-    <div id="matchdeets" class="modal" style="display: none">
+    <div id="matchdeets" class="ch_modal" style="display: none">
       <div id="matchdetail_content" class="modal-content">
         <input id="blur" class="blur" readonly />
         <div class="md_detail">
@@ -493,18 +509,13 @@
             <div class="md_row">
               <div class="md_label">Court:</div>
               <div class="md_value">
-                <input
-                  class="t_entry"
-                  id="match_court"
-                  placeholder="Match Court Number or Name"
-                  onChange="updateMatchDetails()"
-                />
+                <input class="t_entry input" id="match_court" placeholder="Match Court Number or Name" />
               </div>
             </div>
             <div class="md_row">
               <div class="md_label">Umpire:</div>
               <div class="md_value">
-                <input class="t_entry" id="match_umpire" placeholder="Match Umpire" onChange="updateMatchDetails()" />
+                <input class="t_entry input" id="match_umpire" placeholder="Match Umpire" />
               </div>
             </div>
           </div>
@@ -515,46 +526,31 @@
             <div class="md_row">
               <div class="md_label">Name:</div>
               <div class="md_value">
-                <input
-                  class="t_entry"
-                  id="tournament_name"
-                  placeholder="Tournament Name"
-                  onChange="updateTournamentDetails()"
-                />
+                <input class="t_entry input" id="tournament_name" placeholder="Tournament Name" />
               </div>
             </div>
             <div class="md_row">
               <div class="md_label">Date:</div>
               <div class="md_value">
-                <input
-                  class="t_entry"
-                  id="tournament_start_date"
-                  placeholder="Start Date"
-                  onChange="updateTournamentDetails()"
-                />
+                <input class="t_entry input" id="tournament_start_date" placeholder="Start Date" />
               </div>
             </div>
             <div class="md_row">
               <div class="md_label">Tour:</div>
               <div class="md_value">
-                <input class="t_entry" id="tournament_tour" placeholder="Tour" onChange="updateTournamentDetails()" />
+                <input class="t_entry input" id="tournament_tour" placeholder="Tour" />
               </div>
             </div>
             <div class="md_row">
               <div class="md_label">Rank:</div>
               <div class="md_value">
-                <input
-                  class="t_entry"
-                  id="tournament_rank"
-                  placeholder="Tournament Rank"
-                  onChange="updateTournamentDetails()"
-                />
+                <input class="t_entry input" id="tournament_rank" placeholder="Tournament Rank" />
               </div>
             </div>
             <div class="md_row">
               <label
                 ><span class="md_label">Surface:</span>
-                <select class="MDselection" id="tournament_surface" tabindex="5" onChange="updateTournamentDetails()">
+                <select class="MDselection" id="tournament_surface" tabindex="5">
                   <option value="">- Select -</option>
                   <option value="clay">Clay</option>
                   <option value="hard">Hard</option>
@@ -566,7 +562,7 @@
             <div class="md_row">
               <label
                 ><span class="md_label">In/Out:</span>
-                <select class="MDselection" id="tournament_in_out" tabindex="5" onChange="updateTournamentDetails()">
+                <select class="MDselection" id="tournament_in_out" tabindex="5">
                   <option value="">- Select -</option>
                   <option value="in">Indoor</option>
                   <option value="out">Outdoor</option>
@@ -576,7 +572,7 @@
             <div class="md_row">
               <label
                 ><span class="md_label">Draw:</span>
-                <select class="MDselection" id="tournament_draw" tabindex="5" onChange="updateTournamentDetails()">
+                <select class="MDselection" id="tournament_draw" tabindex="5">
                   <option value="">- Select -</option>
                   <option value="main">Main</option>
                   <option value="qual">Qualification</option>
@@ -586,7 +582,7 @@
             <div class="md_row">
               <label
                 ><span class="md_label">Draw Size:</span>
-                <select class="MDselection" id="tournament_draw_size" tabindex="5" onChange="updateTournamentDetails()">
+                <select class="MDselection" id="tournament_draw_size" tabindex="5">
                   <option value="">- Select -</option>
                   <option value="8">8</option>
                   <option value="12">12</option>
@@ -602,7 +598,7 @@
             <div class="md_row">
               <label
                 ><span class="md_label">Round:</span>
-                <select class="MDselection" id="tournament_round" tabindex="5" onChange="updateTournamentDetails()">
+                <select class="MDselection" id="tournament_round" tabindex="5">
                   <option value="">- Select -</option>
                   <option value="F">Final</option>
                   <option value="SF">Seminfinal</option>
@@ -623,8 +619,20 @@
             </div>
           </div>
         </div>
+        <div class="md_detail">
+          <div class="md_header"><b>Provider</b></div>
+          <div class="md_player">
+            <div class="md_row">
+              <div class="md_label">Name:</div>
+              <div class="md_value">
+                <input class="t_entry input is-primary" id="provider" placeholder="Name of provider" />
+              </div>
+            </div>
+          </div>
+        </div>
+
         <div class="ep_actions">
-          <div class="closeModal ep_action">Done</div>
+          <div class="updateDetails closeModal ep_action">Done</div>
         </div>
       </div>
     </div>
@@ -722,7 +730,7 @@
           <div class="status_message"></div>
         </div>
       </div>
-      <div class="footer vs_rally">
+      <div class="ch_footer vs_rally">
         <div class="classAction vs_rallybar rally flexcenter pressAndHold" action="rally">Rally</div>
       </div>
     </div>
