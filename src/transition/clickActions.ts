@@ -11,7 +11,6 @@ export function viewGameFish(element: any) {
   showGameFish(gameIndex);
 }
 export function viewEditPoint(element: any) {
-  console.log('vep');
   const parent = findUpClass(element, 'ph_episode');
   const pointIndex = parseInt(parent?.getAttribute('pointIndex') ?? 0);
   editPoint(pointIndex);

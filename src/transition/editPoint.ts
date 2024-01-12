@@ -15,13 +15,16 @@ export function editPoint(index: number) {
   const players = env.match.metadata.players();
   const player_select = Array.from(document.querySelectorAll('.select_player'));
   player_select.forEach((select: any) =>
-    players.forEach((player: any, index: number) => (select.options[index] = new Option(player.name, index.toString())))
+    players.forEach(
+      (player: any, index: number) => (select.options[index] = new Option(player.name, index.toString())),
+    ),
   );
   const point_winner: any = document.getElementById('point_winner');
   const point_loser: any = document.getElementById('point_loser');
   if (point_winner) point_winner.value = env.edit_point.winner;
   if (point_loser) point_loser.value = env.edit_point.result || '';
   changePointWinner();
+  changePointPlayer();
   changeResultOptions();
   const editPointDisplay = document.getElementById('editpoint');
   if (editPointDisplay) editPointDisplay.style.display = 'flex';
@@ -56,21 +59,21 @@ function changeResultOptions() {
   pointResult.value = env.edit_point_result;
 }
 
-/*
 function changePointPlayer() {
-  var player = document.getElementById('point_player').value;
-  var result = document.getElementById('point_result').value;
+  const pointPlayer: any = document.getElementById('point_player');
+  const pointResult: any = document.getElementById('point_result');
+  const winner: any = document.getElementById('point_winner');
+  const player = pointPlayer?.value;
+  const result = pointResult.value;
   env.edit_point.result = result;
-  var winner = document.getElementById('point_winner').value;
-  if ((result.indexOf('Winner') >= 0 || result.indexOf('Ace') >= 0) && player != winner) {
-    document.getElementById('point_winner').value = player;
+  if ((result.indexOf('Winner') >= 0 || result.indexOf('Ace') >= 0) && player != winner.value) {
+    winner.value = player;
   }
-  if (result.indexOf('Winner') < 0 && result.indexOf('Ace') < 0 && player == winner) {
-    document.getElementById('point_winner').value = 1 - player;
+  if (result.indexOf('Winner') < 0 && result.indexOf('Ace') < 0 && player == winner.value) {
+    winner.value = 1 - player;
   }
   changeResultOptions();
 }
-*/
 
 export function updatePoint() {
   const pointResult: any = document.getElementById('point_result');
