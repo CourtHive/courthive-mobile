@@ -4,7 +4,7 @@
   "version": "1.0.0",
   "license": "MIT",
   "scripts": {
-    "start": "node mobileServer.js"
+    "start": "node -r esm mobileServer.js"
   },
   "dependencies": {
     "axios": "^0.21.1",
