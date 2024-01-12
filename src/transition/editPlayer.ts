@@ -12,6 +12,10 @@ export function editPlayer(element: any) {
   if (playerName) playerName.value = player.name;
   const team: any = document.getElementById('team');
   if (team) team.value = player.team ?? '';
+
+  const playerId: any = document.getElementById('playerid');
+  if (playerId) playerId.value = player.id ?? '';
+
   const attributes = ['hand', 'entry', 'seed', 'draw_position', 'ioc'];
   attributes.forEach((attribute) => {
     const target_id = `player_${attribute}`;

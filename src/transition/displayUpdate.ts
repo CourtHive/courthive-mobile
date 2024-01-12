@@ -260,12 +260,14 @@ export function checkPlayerName(keypress: any) {
 export function changePlayerName() {
   const player_name: any = document.getElementById('playername');
   const team: any = document.getElementById('team');
+  const id: any = document.getElementById('playerid');
   if (player_name) {
     const update: any = {
       index: env.edit_player,
       name: player_name.value,
     };
     if (team) update.team = team.value;
+    if (id) update.id = id.value;
     env.match.metadata.definePlayer(update);
   }
   updatePositions();
