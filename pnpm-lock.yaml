@@ -47,8 +47,8 @@ devDependencies:
     specifier: ^2.0.11
     version: 2.0.11
   cz-git:
-    specifier: 1.7.1
-    version: 1.7.1
+    specifier: 1.8.0
+    version: 1.8.0
   dotenv:
     specifier: 16.3.1
     version: 16.3.1
@@ -3326,8 +3326,8 @@ packages:
       which: 2.0.2
     dev: true
 
-  /cz-git@1.7.1:
-    resolution: {integrity: sha512-NMe4REukCS7op1YA1jixRXOgII8Um2/Ii8TeyFEOISgp2ZzeobzkMOP8dXSrTQ3bvmm7YpPOdr2301yJkOJcbA==}
+  /cz-git@1.8.0:
+    resolution: {integrity: sha512-XL5nXiqbW10YswQqWODrbwyWhydw3mLhP8OBrXyl8u4sIjTf/6mhGsizd6FA2VgPc4tZaNGguFoUyDj7vIBouw==}
     engines: {node: '>=v12.20.0'}
     dev: true
 
