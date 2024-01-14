@@ -1,7 +1,6 @@
+import { coms, connectSocket, disconnectSocket } from '../../transition/coms';
 import { getJwtTokenStorageKey } from '../../config/getJwtTokenStorageKey';
-import { connectSocket, disconnectSocket } from '../../transition/coms';
 import { browserStorage } from '../../transition/browserStorage';
-import coms from '../../server/app/messaging/coms';
 import { validateToken } from './validateToken';
 
 const JWT_TOKEN_STORAGE_NAME = getJwtTokenStorageKey();
