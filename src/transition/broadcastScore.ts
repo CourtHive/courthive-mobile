@@ -25,9 +25,9 @@ export function broadcastScore(action?: any) {
       winner: env.match.winner(),
       geoposition: {
         latitude: coords.latitude,
-        longitude: coords.longitude
+        longitude: coords.longitude,
       },
-      undo: typeof action == 'string' && action == 'Undo'
+      undo: typeof action == 'string' && action == 'Undo',
     };
     sendScoreUpdate(match_message);
   }

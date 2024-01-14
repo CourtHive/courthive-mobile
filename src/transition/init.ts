@@ -1,14 +1,15 @@
-import { coms, sendKey, sendHistory, startBroadcast, disconnectSocket, connectSocket } from './coms';
-import { app, env, restoreAppState, setOrientation, updateAppState } from './env';
+import { app, restoreAppState, setOrientation, updateAppState } from './env';
 import { configureViz, orientationEvent, vizUpdate } from './configureViz';
-import { changeDisplay, viewManager } from './viewManager';
+import { setInitialState } from '../config/initialState';
+import { setDev } from '../services/helpers/setDev';
 import { browserStorage } from './browserStorage';
 import { registerEvents } from './registerEvents';
 import { newMatch } from './displayMatchArchive';
+import { sendKey, startBroadcast } from './coms';
+import { changeDisplay } from './viewManager';
 import { touchManager } from './touchManager';
 import { defineActionEvents } from './events';
 import { generateRange } from './utilities';
-import { version } from '../config/version';
 import { modalHelp } from './modalHelp';
 import { loadMatch } from './loadMatch';
 import { closeModal } from './modals';
@@ -24,19 +25,9 @@ import {
 } from './displayUpdate';
 
 import iocCodes from './ioc_codes.json';
-import { setInitialState } from '../config/initialState';
 
 export function init() {
-  window['dev'] = {
-    disconnectSocket,
-    connectSocket,
-    sendHistory,
-    viewManager,
-    version,
-    coms,
-    app,
-    env,
-  };
+  setDev();
 
   window.addEventListener(
     'orientationchange',
