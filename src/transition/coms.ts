@@ -1,38 +1,47 @@
 import { attemptJSONparse, formatDate, getOpponents, showModal } from './utilities';
+import { getJwtTokenStorageKey } from '../config/getJwtTokenStorageKey';
 import { app, env, updateAppState, updateMatchArchive } from './env';
 import { loadDetails, stateChangeEvent } from './displayUpdate';
 import { resetMatch } from './displayMatchArchive';
+import { browserStorage } from './browserStorage';
 import { viewManager } from './viewManager';
-import { connect } from 'socket.io-client';
 import { pulseCircle } from './pulseCircle';
 import { version } from '../config/version';
-
-import * as d3 from 'd3';
+import { connect } from 'socket.io-client';
 import { closeModal } from './modals';
+import * as d3 from 'd3';
 
 type ComsObject = {
-  connectionOptions: any;
   socket: any;
 };
 
+function getAuthorization() {
+  const token = browserStorage.get(getJwtTokenStorageKey());
+  if (!token) return undefined;
+  const authorization = `Bearer ${token}`;
+  return { authorization };
+}
+
 export const coms: ComsObject = {
   socket: undefined,
-  connectionOptions: {
-    'force new connection': true,
-    reconnectionDelay: 1000,
-    reconnectionAttempts: 'Infinity',
-    timeout: 20000,
-  },
 };
 
 export function connectSocket() {
   if ((navigator.onLine || window.location.hostname == 'localhost') && !coms.socket) {
     const server =
       window.location.hostname.startsWith('localhost') || window.location.hostname === '127.0.0.1'
-        ? 'http://localhost:8833'
+        ? // ? 'http://localhost:8833'
+          'http://127.0.0.1:8383'
         : 'https://courthive.com';
     const connectionString = `${server}/mobile`;
-    coms.socket = connect(connectionString, coms.connectionOptions);
+    const connectionOptions: any = {
+      transportOptions: { polling: { extraHeaders: getAuthorization() } },
+      reconnectionAttempts: 'Infinity',
+      'force new connection': true,
+      reconnectionDelay: 1000,
+      timeout: 20000,
+    };
+    coms.socket = connect(connectionString, connectionOptions);
     if (coms.socket) {
       coms.socket.on('connect', comsConnect);
       coms.socket.on('ack', (ack) => console.log({ ack }));
@@ -40,6 +49,8 @@ export function connectSocket() {
       coms.socket.on('connect_error', comsError);
       coms.socket.on('history request', sendHistory);
       coms.socket.on('tmx message', receiveMatchUp);
+      coms.socket.on('exception', (exeption) => console.log(exeption));
+      coms.socket.on('success', (message) => console.log(message));
     }
   }
 }
