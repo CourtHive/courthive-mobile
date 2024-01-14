@@ -30,9 +30,8 @@ export function connectSocket() {
   if ((navigator.onLine || window.location.hostname == 'localhost') && !coms.socket) {
     const server =
       window.location.hostname.startsWith('localhost') || window.location.hostname === '127.0.0.1'
-        ? // ? 'http://localhost:8833'
-          'http://127.0.0.1:8383'
-        : 'https://courthive.com';
+        ? 'http://127.0.0.1:8383'
+        : window.location.hostname;
     const connectionString = `${server}/mobile`;
     const connectionOptions: any = {
       transportOptions: { polling: { extraHeaders: getAuthorization() } },
