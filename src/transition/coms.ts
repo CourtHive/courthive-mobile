@@ -1,7 +1,8 @@
-import { attemptJSONparse, formatDate, getOpponents, showModal } from './utilities';
+import { attemptJSONparse, formatDate, getOpponents } from './utilities';
 import { getJwtTokenStorageKey } from '../config/getJwtTokenStorageKey';
 import { app, env, updateAppState, updateMatchArchive } from './env';
 import { loadDetails, stateChangeEvent } from './displayUpdate';
+import { tmxToast } from '../services/notifications/tmxToast';
 import { resetMatch } from './displayMatchArchive';
 import { browserStorage } from './browserStorage';
 import { viewManager } from './viewManager';
@@ -31,7 +32,10 @@ export function connectSocket() {
     const server =
       window.location.hostname.startsWith('localhost') || window.location.hostname === '127.0.0.1'
         ? 'http://127.0.0.1:8383'
-        : window.location.hostname;
+        : // : window.location.hostname;
+          'https://courthive.net';
+
+    console.log({ server });
     const connectionString = `${server}/mobile`;
     const connectionOptions: any = {
       transportOptions: { polling: { extraHeaders: getAuthorization() } },
@@ -91,14 +95,14 @@ function comsDisconnect() {
   console.log('socket closed');
 }
 function comsError() {
-  showModal(` <p> <h1>No Internet Connection!</h1>`);
+  tmxToast({ message: 'No server connection', intent: 'is-danger' });
   endBroadcast();
 }
 
 function receiveMatchUp(data: any) {
   if (!data?.matchUpId) {
-    const message = `<h2>Invalid Data</h2>`;
-    return showModal(message);
+    const message = `Invalid data`;
+    return tmxToast({ message });
   }
 
   const auth_match = attemptJSONparse(data.data);
@@ -184,8 +188,8 @@ export function sendKey(payload: any) {
     coms.socket.emit('mh', { type: 'key', payload });
     closeModal();
   } else {
-    const modaltext = ` <p> <h1>Not connected</h1> <p><i>Connection Error</i></p> </p> `;
-    showModal(modaltext);
+    const message = `Connection error`;
+    tmxToast({ message, intent: 'is-danger' });
   }
 }
 
