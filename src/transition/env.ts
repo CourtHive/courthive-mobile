@@ -1,8 +1,8 @@
 import { browserStorage } from './browserStorage';
 import { firstAndLast } from './utilities';
 import { mo } from '../services/matchObject/umo';
+import { version } from '../config/version';
 
-export const ch_version = '1.9';
 export const charts: any = {};
 const match = mo.Match();
 
@@ -118,7 +118,7 @@ export function updateMatchArchive(force?: boolean) {
   }
 
   const match_object = {
-    ch_version: ch_version,
+    ch_version: version,
     players: players,
     first_service: match.set.firstService(),
     match: match.metadata.defineMatch(),
