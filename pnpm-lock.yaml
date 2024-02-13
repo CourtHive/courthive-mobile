@@ -91,6 +91,9 @@ devDependencies:
   rimraf:
     specifier: 5.0.5
     version: 5.0.5
+  semver:
+    specifier: ^7.6.0
+    version: 7.6.0
   socket.io-client:
     specifier: 4.7.4
     version: 4.7.4
