@@ -11,7 +11,7 @@ export function updateStats(element?: Element) {
   let statselectors = `<div class='updateStats s_set'>Match</div>`;
   const stats = env.match.stats.calculated(set_filter);
   const stripModifiers = (text: string) => text.match(/[A-Za-z0-9_]/g)?.join('');
-  if (stats && stats.length) {
+  if (stats?.length) {
     // generate & display match/set view selectors
     if (sets > 1) {
       for (let s = 0; s < sets; s++) {
@@ -92,7 +92,7 @@ export function updateStats(element?: Element) {
                 return counters[key][hand]
                   ? counters[key][hand].map((episode: any) => episode.point.result).filter(Boolean)
                   : [];
-              })
+              }),
             )
             .filter((item, i, s) => s.lastIndexOf(item) == i);
           results.forEach((result) => {
@@ -114,7 +114,7 @@ export function updateStats(element?: Element) {
                   return counters[key][hand]
                     ? counters[key][hand].map((episode: any) => episode.point.stroke).filter(Boolean)
                     : [];
-                })
+                }),
               )
               .filter((item, i, s) => s.lastIndexOf(item) == i);
             strokes.forEach((stroke) => {
