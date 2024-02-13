@@ -31,7 +31,7 @@ export function connectSocket() {
   if ((navigator.onLine || window.location.hostname == 'localhost') && !coms.socket) {
     const server =
       window.location.hostname.startsWith('localhost') || window.location.hostname === '127.0.0.1'
-        ? 'http://127.0.0.1:8383'
+        ? env.server || 'http://127.0.0.1:8383'
         : // : window.location.hostname;
           'https://courthive.net';
 
