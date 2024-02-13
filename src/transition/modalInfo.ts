@@ -1,11 +1,11 @@
+import { version } from '../config/version';
 import { showModal } from './utilities';
-import { ch_version } from './env';
 
 export function modalInfo() {
   const modaltext = `
          <p>&nbsp;</b>
          <h2>CourtHive</h2>
-         <p>version <a id="version" target="_blank" href="https://github.com/TennisVisuals/universal-match-object/tree/master/examples/CourtHive">${ch_version}</a></p>
+         <p>version <a id="version" target="_blank" href="https://github.com/TennisVisuals/universal-match-object/tree/master/examples/CourtHive">${version}</a></p>
          <p>An 
             <a target="_blank" href="https://github.com/TennisVisuals/universal-match-object/tree/master/examples/CourtHive">Open Source</a> project developed by 
             <a target="_blank" href="http://TennisVisuals.com">TennisVisuals</a>
