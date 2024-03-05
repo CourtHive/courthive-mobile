@@ -67,7 +67,7 @@ function gameEntry(game: any, players: any[]) {
   game.points.forEach((point: any) => {
     html += pointEntry(
       point,
-      players
+      players,
       // game.complete && index == game.points.length - 1 ? game.score.join('-') : undefined
     );
   });
