@@ -56,18 +56,18 @@ function gameEntry(game: any, players: any[]) {
             <div class='ph_margin flexrows'>
                <div class="ph_server ${service}">${server}</div>
                <div class="ph_action flexcenter"> 
-                  <div class='ph_fish iconfish'></div>
+                  <div class='viewGameFish ph_fish iconfish' gameIndex='${game.index}'></div>
                </div>
-               <div class='viewGameFish ph_rally gameIndex="${
-                 game.index
-               }" ph_${servergame}''> <b class="viewGameFish" gameIndex="${game.index}">${game_score || ''}</b> </div>
+               <div class='viewGameFish ph_rally ph_${servergame}' gameIndex="${game.index}"'>
+                  <b class="viewGameFish" gameIndex="${game.index}">${game_score || ''}</b>
+               </div>
             </div>
          </div>
       `;
   game.points.forEach((point: any) => {
     html += pointEntry(
       point,
-      players
+      players,
       // game.complete && index == game.points.length - 1 ? game.score.join('-') : undefined
     );
   });

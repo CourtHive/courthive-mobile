@@ -41,7 +41,7 @@ export function classAction(element: any) {
       env.serve2nd = false;
     },
     secondServe() {
-      env.serve2nd = toggles.serve2nd ? false : true;
+      env.serve2nd = !toggles.serve2nd;
       toggles.serve2nd = !toggles.serve2nd;
     },
     fault(side: number) {
