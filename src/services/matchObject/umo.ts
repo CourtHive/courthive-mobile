@@ -79,6 +79,14 @@ const formats = {
       children: 'advantage',
       decidingChild: 'tiebreak7a',
     },
+    NoAdPro8a7: {
+      description: '8 Game Pro Set; tiebreak to 7',
+      hasDecider: true,
+      threshold: 8,
+      minDiff: 2,
+      children: 'noAdvantage',
+      decidingChild: 'tiebreak7a',
+    },
     college6a7: {
       description: '6 Game College Doubless Set; no advantage; tiebreak to 7',
       hasDecider: true,
@@ -169,6 +177,15 @@ const formats = {
       minDiff: 0,
       children: 'pro8a7',
       decidingChild: 'pro8a7',
+    },
+    '1_8n_7': {
+      name: '8 Game Pro Set - No Advantage',
+      description: '1 set, Advantage, 8 games for set, Tiebreak to 7',
+      hasDecider: true,
+      threshold: 1,
+      minDiff: 0,
+      children: 'NoAdPro8a7',
+      decidingChild: 'NoAdPro8a7',
     },
     '1_6a_7': {
       name: '6 Game College Doubles Set',
