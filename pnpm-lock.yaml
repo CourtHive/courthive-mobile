@@ -10,7 +10,7 @@ dependencies:
     version: 4.1.1
   axios:
     specifier: ^1.6.5
-    version: 1.6.5
+    version: 1.6.7
   bulma:
     specifier: ^0.9.4
     version: 0.9.4
@@ -56,8 +56,8 @@ devDependencies:
     specifier: 2.0.11
     version: 2.0.11
   cz-git:
-    specifier: 1.8.0
-    version: 1.8.0
+    specifier: 1.9.0
+    version: 1.9.0
   dotenv:
     specifier: 16.4.5
     version: 16.4.5
@@ -2904,8 +2904,8 @@ packages:
     engines: {node: '>=4'}
     dev: true
 
-  /axios@1.6.5:
-    resolution: {integrity: sha512-Ii012v05KEVuUoFWmMW/UQv9aRIc3ZwkWDcM+h5Il8izZCtRVpDUfwpoFf7eOtajT3QiGR4yDUx7lPqHJULgbg==}
+  /axios@1.6.7:
+    resolution: {integrity: sha512-/hDJGff6/c7u0hDkvkGxR/oy6CbCs8ziCsC7SqmhjfozqiJGc8Z11wrv9z9lYfY4K8l+H9TpjcMDX0xOZmx+RA==}
     dependencies:
       follow-redirects: 1.15.5
       form-data: 4.0.0
@@ -3363,8 +3363,8 @@ packages:
       which: 2.0.2
     dev: true
 
-  /cz-git@1.8.0:
-    resolution: {integrity: sha512-XL5nXiqbW10YswQqWODrbwyWhydw3mLhP8OBrXyl8u4sIjTf/6mhGsizd6FA2VgPc4tZaNGguFoUyDj7vIBouw==}
+  /cz-git@1.9.0:
+    resolution: {integrity: sha512-xxqJwVS4MseVXLOlIK6w97WSHlo14BaOmhO3H6qB0H2Q5Kf3URMwJuYbInq1GxAVT14XLUZBhMy/3Di+lux/Cg==}
     engines: {node: '>=v12.20.0'}
     dev: true
 
