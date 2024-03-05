@@ -18,7 +18,7 @@ export function gameFish() {
       top: 10,
       bottom: 10,
       left: 10,
-      right: 10
+      right: 10,
     },
     fish: {
       school: false,
@@ -26,10 +26,10 @@ export function gameFish() {
       max_rally: undefined,
       cell_size: undefined,
       min_cell_size: 5,
-      max_cell_size: 20
+      max_cell_size: 20,
     },
     set: {
-      tiebreak_to: 7
+      tiebreak_to: 7,
     },
     display: {
       orientation: 'vertical',
@@ -44,7 +44,7 @@ export function gameFish() {
       player: true,
       rally: true,
       score: true,
-      grid: true
+      grid: true,
     },
     colors: {
       players: { 0: 'red', 1: 'black' },
@@ -66,9 +66,9 @@ export function gameFish() {
         'Out Long': 'red',
         'Double Fault': 'red',
         Unknown: 'blue',
-        Error: 'red'
-      }
-    }
+        Error: 'red',
+      },
+    },
   };
 
   const default_colors = { default: '#235dba' };
@@ -78,7 +78,7 @@ export function gameFish() {
     leftImage: { click: null },
     rightImage: { click: null },
     update: { begin: null, end: null },
-    point: { mouseover: null, mouseout: null, click: null }
+    point: { mouseover: null, mouseout: null, click: null },
   };
 
   let fishFrame: any;
@@ -165,15 +165,13 @@ export function gameFish() {
           label: label,
           l: (g + (vert ? 1.25 : 0.75)) * radius,
           o: (g + (vert ? 0.75 : 1.25)) * radius,
-          rotate: 45
+          rotate: 45,
         });
         grid_labels.push({ label: label, l: (g + 1.25) * radius, o: -1 * (g + 0.75) * radius, rotate: -45 });
         for (let c = 0; c < grid_side; c++) {
           grid_data.push([g, c]);
         }
       }
-
-      // const score_offset = options.display.score ? cell_size : 0;
 
       // check if this is a standalone SVG or part of larger SVG
       if (root) {
@@ -407,7 +405,7 @@ export function gameFish() {
             point: i,
             serve: first_serve ? 'second' : 'first',
             server: s.server,
-            result: serve_outcomes.indexOf(s.result) >= 0 ? s.result : 'In'
+            result: serve_outcomes.indexOf(s.result) >= 0 ? s.result : 'In',
           });
         });
 
