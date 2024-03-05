@@ -34,7 +34,7 @@ export function resetStyles() {
 export function resetButton(id: string) {
   const button = document.getElementById(id);
   if (!button) return;
-  if (buttons?.[id] && buttons[id].color) {
+  if (buttons?.[id]?.color) {
     button.style.backgroundColor = 'white';
     button.style.color = buttons[id].color;
     button.style.borderColor = buttons[id].color;

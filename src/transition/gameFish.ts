@@ -1,3 +1,4 @@
+import { rallyCount } from '../functions/legacyRally';
 import * as d3 from 'd3';
 
 export function gameFish() {
@@ -106,7 +107,7 @@ export function gameFish() {
     update = function (opts: any) {
       if (bars == undefined || fish == undefined || game == undefined) return;
 
-      if (options.display.sizeToFit || (opts && opts.sizeToFit)) {
+      if (options.display.sizeToFit || opts?.sizeToFit) {
         const dims = selection.node().getBoundingClientRect();
         options.width = Math.max(dims.width, 100);
         options.height = Math.max(dims.height, 100);
@@ -120,7 +121,7 @@ export function gameFish() {
       let tiebreak = false;
       let max_rally = 0;
       data.forEach((e: any) => {
-        if (e.rally && e.rally.length > max_rally) max_rally = e.rally.length;
+        if (e.rally && rallyCount(e.rally) > max_rally) max_rally = rallyCount(e.rally);
         if (e.score.indexOf('T') > 0) tiebreak = true;
       });
 
@@ -548,13 +549,13 @@ export function gameFish() {
       }
       function colorReturn(d: any) {
         if (d.rally == undefined) return 'white';
-        if (d.rally.length > 1) return 'yellow';
-        if (d.rally.length == 1) return options.colors.results[d.result];
+        if (rallyCount(d.rally) > 1) return 'yellow';
+        if (rallyCount(d.rally) == 1) return options.colors.results[d.result];
         return 'white';
       }
 
       function rallyCalc(d: any) {
-        return d.rally ? oScale(d.rally.length) : 0;
+        return d.rally ? oScale(rallyCount(d.rally)) : 0;
       }
 
       function sscoreT(_: any, i: number) {
@@ -602,7 +603,7 @@ export function gameFish() {
       }
 
       function rallyT(d: any, i: number) {
-        const o = d.rally ? midpoint - oScale(d.rally.length) / 2 : 0;
+        const o = d.rally ? midpoint - oScale(rallyCount(d.rally)) / 2 : 0;
         const l = radius + cL(d, i);
         return translate(o, l, 0);
       }

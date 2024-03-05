@@ -136,7 +136,7 @@ export function classAction(element: any) {
   if (result) {
     checkStartTime();
     Object.assign(point, result);
-    if (env.rally) point.rally = new Array(env.rally);
+    if (env.rally) point.rally = env.rally;
     const point_location = getPointLocation(point);
     if (point_location) point.location = point_location;
 
