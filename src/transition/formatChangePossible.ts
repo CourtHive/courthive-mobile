@@ -1,8 +1,15 @@
 import { env } from './env';
 
 export function formatChangePossible() {
-  const points = env.match.history.points();
-  return points.length == 0;
+  const advantages = env.match.history
+    .score()
+    .flatMap((s) => s.split('-'))
+    .includes('A');
+  if (advantages) return false;
+  const common = env.match.history.common();
+  if (common.length == 0) return true;
+  const last = common[common.length - 1];
+  return last.set.complete;
 
   // TODO: implement when umo can propagate changes to children...
   /*
