@@ -2,6 +2,7 @@ import { groupGames } from './groupGames';
 import { gameFish } from './gameFish';
 
 import * as d3 from 'd3';
+import { rallyCount } from '../functions/legacyRally';
 
 export function momentumChart() {
   let data: any;
@@ -17,13 +18,13 @@ export function momentumChart() {
       top: 1,
       bottom: 1, // Chrome bug can't be 0
       left: 3,
-      right: 3 // Chrome bug can't be 0
+      right: 3, // Chrome bug can't be 0
     },
     fish: {
       gridcells: ['0', '15', '30', '40', 'G'],
       cell_size: undefined,
       min_cell_size: 5,
-      max_cell_size: 10
+      max_cell_size: 10,
     },
     display: {
       continuous: false,
@@ -39,7 +40,7 @@ export function momentumChart() {
       rally: true,
       score: false,
       momentum_score: true,
-      grid: true
+      grid: true,
     },
     colors: {
       players: { 0: 'red', 1: 'black' },
@@ -61,9 +62,9 @@ export function momentumChart() {
         'Out Long': 'red',
         'Double Fault': 'red',
         Unknown: 'blue',
-        Error: 'red'
-      }
-    }
+        Error: 'red',
+      },
+    },
   };
 
   function width() {
@@ -84,7 +85,7 @@ export function momentumChart() {
     leftImage: { click: null },
     rightImage: { click: null },
     update: { begin: null, end: null },
-    point: { mouseover: null, mouseout: null, click: null }
+    point: { mouseover: null, mouseout: null, click: null },
   };
 
   function chart(selection: any) {
@@ -130,7 +131,7 @@ export function momentumChart() {
         const all_games = groupGames(data);
         let max_rally = 0;
         data.forEach(function (point) {
-          if (point.rally != undefined && point.rally.length > max_rally) max_rally = point.rally.length;
+          if (point.rally != undefined && rallyCount(point.rally) > max_rally) max_rally = rallyCount(point.rally);
         });
 
         const cell_size = cellSize();
@@ -154,12 +155,12 @@ export function momentumChart() {
             fish_school[i].g({
               bars: bars.append('g').attr('class', 'cGF' + i),
               fish: fish.append('g').attr('class', 'cGF' + i),
-              game: game.append('g').attr('class', 'cGF' + i)
+              game: game.append('g').attr('class', 'cGF' + i),
             });
             fish_school[i].options({
               id: 'GF' + i,
               display: { score: false, point_score: false },
-              fish: { school: true }
+              fish: { school: true },
             });
           }
           fish_school[i].width(fish_offset).height(fish_offset);
@@ -171,9 +172,9 @@ export function momentumChart() {
               service: options.display.service,
               rally: options.display.rally,
               player: options.display.player,
-              grid: options.display.grid
+              grid: options.display.grid,
             },
-            colors: { players: { 0: options.colors.players[0], 1: options.colors.players[1] } }
+            colors: { players: { 0: options.colors.players[0], 1: options.colors.players[1] } },
           });
           fish_school[i].data(g.points);
           fish_school[i].coords(coords).update();
@@ -185,7 +186,7 @@ export function momentumChart() {
             index: g.index,
             l: coords[1] + new_coords?.[2] * 1.75,
             o: coords[0] + new_coords?.[2] * 1.75,
-            set_end: g.last_game
+            set_end: g.last_game,
           });
           if (g.last_game && !options.display.continuous) {
             coords[vert ? 0 : 1] = 0;

@@ -1,3 +1,4 @@
+import { rallyCount } from '../functions/legacyRally';
 import { env } from './env';
 
 export function displayPointHistory() {
@@ -98,7 +99,7 @@ function pointEntry(point: any, players: any[]) {
     if (point.server) point_score = `&nbsp;${point_score}*`;
     if (!point.server) point_score = `*${point_score}&nbsp;`;
   }
-  const rally = point.rally ? point.rally.length + 1 : '';
+  const rally = point.rally ? rallyCount(point.rally) + 1 : '';
   return `
     <div class='flexrows ph_episode' pointIndex="${point.index}">
         <div class='ph_point_${evenodd} flexrows'>
