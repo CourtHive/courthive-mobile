@@ -289,7 +289,6 @@ umo.stateObject = ({ index, object, parent_object, child, format, common = umo.c
             : [0, 0]
           : undefined;
     counters.sets = object == 'Match' ? so.counter : undefined;
-    // let current = {};
     const score: any = { counters };
     score.points =
       object == 'Game'
@@ -319,7 +318,7 @@ umo.stateObject = ({ index, object, parent_object, child, format, common = umo.c
     if (object == 'Match' && so.children.length) {
       score.components.sets = so.children.map((set) => {
         const map: any = { games: set.score().counters.local };
-        if (set.lastChild() && set.lastChild().format.tiebreak()) map.tiebreak = set.lastChild().score().counters.local;
+        if (set.lastChild()?.format.tiebreak()) map.tiebreak = set.lastChild().score().counters.local;
         return map;
       });
     }
@@ -354,10 +353,10 @@ umo.stateObject = ({ index, object, parent_object, child, format, common = umo.c
     function beyondDoubleThreshold() {
       return so.counter[0] >= so.format.threshold() && so.counter[1] >= so.format.threshold();
     }
-    return (so.thresholdMet() && so.minDifferenceMet()) ||
+    return !!(
+      (so.thresholdMet() && so.minDifferenceMet()) ||
       (beyondDoubleThreshold() && so.scoreDifference() && so.format.hasDecider())
-      ? true
-      : false;
+    );
   };
   so.nextService = () => {
     if (so.complete()) return false;
@@ -436,9 +435,7 @@ umo.stateObject = ({ index, object, parent_object, child, format, common = umo.c
       attributes.forEach((attribute: any) => {
         if (typeof source[attribute] == 'function') {
           const value = source[attribute]();
-          // let existing_value = target[attribute]();
           target[attribute](value);
-          // let new_value = target[attribute]();
         }
       });
     }
@@ -530,7 +527,6 @@ umo.stateObject = ({ index, object, parent_object, child, format, common = umo.c
     if (episode.result) return episode;
     const last_point = so.history.lastPoint();
     const last_points = !last_point || last_point.score == '0-0' ? [0, 0] : last_point.points;
-    // let total_points = last_points.reduce((a, b) => a + b);
     const attempt = so.change.pointScore(value);
     if (attempt.result) {
       so.undo();
