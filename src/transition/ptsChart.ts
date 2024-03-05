@@ -1,4 +1,5 @@
 import * as d3 from 'd3';
+import { rallyCount } from '../functions/legacyRally';
 
 export function ptsMatch() {
   let match_data: any;
@@ -16,33 +17,33 @@ export function ptsMatch() {
       top: 0,
       right: 0,
       bottom: 0,
-      left: 0
+      left: 0,
     },
 
     set: {
-      average_points: 56
+      average_points: 56,
     },
 
     lines: {
       width: 2,
-      interpolation: 'linear'
+      interpolation: 'linear',
     },
 
     points: {
-      max_width_points: 100
+      max_width_points: 100,
     },
 
     score: {
       font: 'Arial',
       font_size: '12px',
       font_weight: 'bold',
-      reverse: true
+      reverse: true,
     },
 
     header: {
       font: 'Arial',
       font_size: '14px',
-      font_weight: 'bold'
+      font_weight: 'bold',
     },
 
     display: {
@@ -57,14 +58,14 @@ export function ptsMatch() {
       gamepoints: false,
       score: true,
       points: true,
-      winner: true
+      winner: true,
     },
 
     colors: {
       orientation: 'yellow',
       gamepoints: 'black',
-      players: { 0: '#a55194', 1: '#6b6ecf' }
-    }
+      players: { 0: '#a55194', 1: '#6b6ecf' },
+    },
   };
 
   // functions which should be accessible via ACCESSORS
@@ -85,7 +86,7 @@ export function ptsMatch() {
   const events: any = {
     update: { begin: null, end: null },
     set_box: { mouseover: null, mouseout: null },
-    point_bars: { mouseover: null, mouseout: null, click: null }
+    point_bars: { mouseover: null, mouseout: null, click: null },
   };
 
   function chart(selection) {
@@ -204,7 +205,7 @@ export function ptsMatch() {
     if (events.update.begin) events.update.begin();
     const sets = match_data.sets();
     const max_width_points = Math.max(
-      ...sets.map((set, index) => set.history.points().filter((f) => f.set == index).length)
+      ...sets.map((set, index) => set.history.points().filter((f) => f.set == index).length),
     );
     if (sets.length > 1) chart.options({ points: { max_width_points } });
     sets.forEach(function (_, i: number) {
@@ -214,7 +215,7 @@ export function ptsMatch() {
         lines: options.lines,
         points: options.points,
         score: options.score,
-        header: options.header
+        header: options.header,
       });
       pts_charts[i].options({ set: options.set, display: options.display, colors: options.colors });
       pts_charts[i].events(events);
@@ -259,33 +260,33 @@ function ptsChart() {
       top: 5,
       right: 15,
       bottom: 5,
-      left: 5
+      left: 5,
     },
 
     set: {
-      average_points: 56
+      average_points: 56,
     },
 
     lines: {
       width: 2,
-      interpolation: 'linear'
+      interpolation: 'linear',
     },
 
     points: {
-      max_width_points: 100
+      max_width_points: 100,
     },
 
     score: {
       font: 'Arial',
       font_size: '12px',
       font_weight: 'bold',
-      reverse: true
+      reverse: true,
     },
 
     header: {
       font: 'Arial',
       font_size: '14px',
-      font_weight: 'bold'
+      font_weight: 'bold',
     },
 
     display: {
@@ -299,14 +300,14 @@ function ptsChart() {
       gamepoints: false,
       score: true,
       points: true,
-      winner: true
+      winner: true,
     },
 
     colors: {
       orientation: 'yellow',
       gamepoints: 'black',
-      players: { 0: 'blue', 1: 'purple' }
-    }
+      players: { 0: 'blue', 1: 'purple' },
+    },
   };
 
   // functions which should be accessible via ACCESSORS
@@ -320,7 +321,7 @@ function ptsChart() {
   const events = {
     set_box: { mouseover: null, mouseout: null },
     update: { begin: null, end: null },
-    point_bars: { mouseover: null, mouseout: null, click: null }
+    point_bars: { mouseover: null, mouseout: null, click: null },
   };
 
   function chart(selection) {
@@ -393,8 +394,8 @@ function ptsChart() {
         const pts_max = Math.max(
           ...[].concat(
             points_to_set.map((p) => p[0]),
-            points_to_set.map((p) => p[1])
-          )
+            points_to_set.map((p) => p[1]),
+          ),
         );
         const pts_start = Math.max(...points_to_set[0]);
 
@@ -405,8 +406,8 @@ function ptsChart() {
           Math.max.apply(
             null,
             points.map(function (m) {
-              return m.point.rally ? m.point.rally.length : 0;
-            })
+              return m.point.rally ? rallyCount(m.point.rally) : 0;
+            }),
           ) + 2;
 
         displayScore(resize);
@@ -574,7 +575,7 @@ function ptsChart() {
           }),
           points_to_set.map((p) => {
             return { pts: p[1] };
-          })
+          }),
         ];
         const bp_wrappers = pts.selectAll('.' + options.class + 'BPWrapper').data(bp_data);
 
@@ -735,7 +736,7 @@ function ptsChart() {
             if (options.display.game_highlighting && points[i]) {
               d3.select('[id="' + options.class + options.id + 'game' + points[i].point.game + '"]').attr(
                 'opacity',
-                options.display.game_opacity
+                options.display.game_opacity,
               );
             }
             if (events.point_bars.mouseover) {
@@ -795,7 +796,7 @@ function ptsChart() {
             console.log('calcstops:', point);
             const rally = point.rally;
             const result = point.result;
-            const rally_pct = rally ? 100 - Math.floor((rally.length / longest_rally) * 100) : 100;
+            const rally_pct = rally ? 100 - Math.floor((rallyCount(rally) / longest_rally) * 100) : 100;
             if (winners.indexOf(result) >= 0) {
               win_pct = rally_pct;
             } else if (errors.indexOf(result) >= 0) {
@@ -813,7 +814,7 @@ function ptsChart() {
             { offset: u_pct + win_pct + '%', color: 'red' },
             { offset: u_pct + win_pct + err_pct + '%', color: 'red' },
             { offset: u_pct + win_pct + err_pct + '%', color: options.colors.orientation },
-            { offset: '100%', color: options.colors.orientation }
+            { offset: '100%', color: options.colors.orientation },
           ];
         }
       };

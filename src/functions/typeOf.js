@@ -10,3 +10,6 @@ export function isArray(item) {
 export function isObject(item) {
   return typeof item === 'object' && !Array.isArray(item);
 }
+export function isNumeric(value) {
+  return !isNaN(parseFloat(value));
+}
