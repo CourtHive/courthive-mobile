@@ -47,7 +47,7 @@ importers:
         version: 4.2.1(vite@5.3.3(@types/node@20.14.10)(sass@1.72.0))
       '@vitest/coverage-v8':
         specifier: 1.6.0
-        version: 1.6.0(vitest@1.6.0(@types/node@20.14.10)(@vitest/ui@1.6.0)(sass@1.72.0))
+        version: 1.6.0(vitest@1.6.0)
       '@vitest/ui':
         specifier: 1.6.0
         version: 1.6.0(vitest@1.6.0)
@@ -58,8 +58,8 @@ importers:
         specifier: 2.0.11
         version: 2.0.11
       cz-git:
-        specifier: 1.9.3
-        version: 1.9.3
+        specifier: 1.12.0
+        version: 1.12.0
       dotenv:
         specifier: 16.4.5
         version: 16.4.5
@@ -116,10 +116,10 @@ importers:
         version: 1.6.0(@types/node@20.14.10)(@vitest/ui@1.6.0)(sass@1.72.0)
       vitest-github-actions-reporter:
         specifier: 0.11.1
-        version: 0.11.1(vitest@1.6.0(@types/node@20.14.10)(@vitest/ui@1.6.0)(sass@1.72.0))
+        version: 0.11.1(vitest@1.6.0)
       vitest-sonar-reporter:
         specifier: 2.0.0
-        version: 2.0.0(vitest@1.6.0(@types/node@20.14.10)(@vitest/ui@1.6.0)(sass@1.72.0))
+        version: 2.0.0(vitest@1.6.0)
       yargs:
         specifier: 17.7.2
         version: 17.7.2
@@ -1806,8 +1806,8 @@ packages:
     resolution: {integrity: sha512-iRDPJKUPVEND7dHPO8rkbOnPpyDygcDFtWjpeWNCgy8WP2rXcxXL8TskReQl6OrB2G7+UJrags1q15Fudc7G6w==}
     engines: {node: '>= 8'}
 
-  cz-git@1.9.3:
-    resolution: {integrity: sha512-v7+vYOparImLLo6J5tAsi/cz+EAK7FI/TDnemi11xgEax4k+ZVqxsmkiEc68n+MJLp1l5THhB2KTDhjpW+ellg==}
+  cz-git@1.12.0:
+    resolution: {integrity: sha512-LaZ+8whPPUOo6Y0Zy4nIbf6JOleV3ejp41sT6N4RPKiKKA+ICWf4ueeIlxIO8b6JtdlDxRzHH/EcRji07nDxcg==}
     engines: {node: '>=v12.20.0'}
 
   d3-array@1.2.1:
@@ -2175,6 +2175,7 @@ packages:
   eslint@8.57.0:
     resolution: {integrity: sha512-dZ6+mexnaTIbSBZWgou51U6OmzIhYM2VcNdtiTtI7qPNZm35Akpr0f6vtw3w1Kmn5PYo+tZVfh13WrhpS6oLqQ==}
     engines: {node: ^12.22.0 || ^14.17.0 || >=16.0.0}
+    deprecated: This version is no longer supported. Please see https://eslint.org/version-support for other options.
     hasBin: true
 
   espree@9.6.1:
@@ -5196,7 +5197,7 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  '@vitest/coverage-v8@1.6.0(vitest@1.6.0(@types/node@20.14.10)(@vitest/ui@1.6.0)(sass@1.72.0))':
+  '@vitest/coverage-v8@1.6.0(vitest@1.6.0)':
     dependencies:
       '@ampproject/remapping': 2.2.1
       '@bcoe/v8-coverage': 0.2.3
@@ -5693,7 +5694,7 @@ snapshots:
       shebang-command: 2.0.0
       which: 2.0.2
 
-  cz-git@1.9.3: {}
+  cz-git@1.12.0: {}
 
   d3-array@1.2.1: {}
 
@@ -7673,12 +7674,12 @@ snapshots:
       fsevents: 2.3.3
       sass: 1.72.0
 
-  vitest-github-actions-reporter@0.11.1(vitest@1.6.0(@types/node@20.14.10)(@vitest/ui@1.6.0)(sass@1.72.0)):
+  vitest-github-actions-reporter@0.11.1(vitest@1.6.0):
     dependencies:
       '@actions/core': 1.10.1
       vitest: 1.6.0(@types/node@20.14.10)(@vitest/ui@1.6.0)(sass@1.72.0)
 
-  vitest-sonar-reporter@2.0.0(vitest@1.6.0(@types/node@20.14.10)(@vitest/ui@1.6.0)(sass@1.72.0)):
+  vitest-sonar-reporter@2.0.0(vitest@1.6.0):
     dependencies:
       vitest: 1.6.0(@types/node@20.14.10)(@vitest/ui@1.6.0)(sass@1.72.0)
 
